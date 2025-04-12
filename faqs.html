@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQs | Investra</title>
+  <link rel="stylesheet" href="faqs.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Fredoka', sans-serif; }</style>
+</head>
+<body>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="images/investra-logo.png" alt="Logo" class="header-logo">
+        <span class="brand-text">Investra</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">HOME</a>
+       
+        <a href="faqs.html">FAQS</a>
+      </nav>
+      <div class="header-user-wrapper">
+        <div class="header-user" id="userCircle">U</div>
+        <div class="user-dropdown" id="userDropdown">
+          <p id="userEmail">you@example.com</p>
+          <hr>
+          <button onclick="toggleTheme()">Toggle Dark Mode</button>
+          <button onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FAQ Content -->
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item"><h3>1. What is Investra?</h3>
+      <p>Investra is a modern stock dashboard that lets you search, track, compare, and analyze stock market data interactively.</p>
+    </div>
+
+    <div class="faq-item"><h3>2. Is the stock data real-time?</h3>
+      <p>Currently, we use periodically updated offline datasets. Live data integration is planned in future releases.</p>
+    </div>
+
+    <div class="faq-item"><h3>3. What is a stock watchlist?</h3>
+      <p>A watchlist lets you save and monitor your favorite stocks in one place for easy access and analysis.</p>
+    </div>
+
+    <div class="faq-item"><h3>4. How can I add stocks to my watchlist?</h3>
+      <p>From the homepage or search panel, simply click on the "+" button to save the stock to your personalized watchlist.</p>
+    </div>
+
+    <div class="faq-item"><h3>5. What are 'Top Movers'?</h3>
+      <p>'Top Movers' are stocks that have shown major changes in price — they’re rising or falling rapidly in the market.</p>
+    </div>
+
+    <div class="faq-item"><h3>6. Can I compare stocks side-by-side?</h3>
+      <p>Yes! On the stock detail page, use the “Compare With” section to compare multiple stocks' key metrics visually.</p>
+    </div>
+
+    <div class="faq-item"><h3>7. What types of stocks are available on Investra?</h3>
+      <p>We feature Indian and global stocks from major indices for diversified market analysis.</p>
+    </div>
+
+    <div class="faq-item"><h3>8. Can I filter stocks by performance?</h3>
+      <p>Absolutely. Use the filters to sort stocks by metrics like market cap, volume, price change, and more.</p>
+    </div>
+
+    <div class="faq-item"><h3>9. How does dark mode work?</h3>
+      <p>Click on your profile icon and select “Toggle Dark Mode” — your preference is saved for future visits.</p>
+    </div>
+
+    <div class="faq-item"><h3>10. Is Investra mobile-friendly?</h3>
+      <p>Yes, the platform is fully responsive and works well across desktops, tablets, and smartphones.</p>
+    </div>
+
+    <div class="faq-item"><h3>11. Can I see historical performance?</h3>
+      <p>Yes. Navigate to the stock’s detail page to view interactive charts with historical trends and movements.</p>
+    </div>
+
+    <div class="faq-item"><h3>12. Will Investra provide investment advice?</h3>
+      <p>No, Investra is a tool for information and analysis. Always consult a financial advisor before investing.</p>
+    </div>
+
+    <div class="faq-item"><h3>13. Can I export stock data?</h3>
+      <p>Not yet, but we are working on features that will let users download data or export charts soon.</p>
+    </div>
+
+    <div class="faq-item"><h3>14. Is Investra free to use?</h3>
+      <p>Yes! Investra is 100% free for all users. Our mission is to make market analysis accessible to everyone.</p>
+    </div>
+
+    <div class="faq-item"><h3>15. Will there be a mobile app?</h3>
+      <p>Yes! We’re planning to launch an Android and iOS app soon. Stay tuned!</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const circle = document.getElementById('userCircle');
+    const dropdown = document.getElementById('userDropdown');
+    const wrapper = document.querySelector('.header-user-wrapper');
+    const email = localStorage.getItem('loggedInEmail');
+
+    if (email) {
+      circle.textContent = email[0].toUpperCase();
+      document.getElementById('userEmail').textContent = email;
+    }
+
+    circle.addEventListener('click', () => {
+      wrapper.classList.toggle('active');
+    });
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+      localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedInEmail');
+      localStorage.removeItem('theme');
+      window.location.href = 'signin.html';
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('active');
+      }
+    });
+  </script>
+  <!-- FOOTER START -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="images/investra-logo.png" alt="Logo" class="footer-logo">
+      <span class="footer-brand-text">Investra</span>
+      <p class="footer-tagline">Invest smart. Live better.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <h4>Connect with us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Investra. All rights reserved.</p>
+  </div>
+</footer>
+<!-- FOOTER END -->
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stock Details | Investra</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stock-detail.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="images/investra-logo.png" alt="Logo" class="header-logo">
+        <span class="brand-text">Investra</span>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html">HOME</a>
+        <a href="faqs.html">FAQs</a>
+      </nav>
+      <div class="header-user-wrapper">
+        <div class="header-user" id="userCircle">U</div>
+        <div class="user-dropdown" id="userDropdown">
+          <p id="userEmail">you@example.com</p>
+          <hr>
+          <button onclick="toggleTheme()" id="themeToggle">🌙 Dark Mode</button>
+          <button onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="container detail-layout">
+    <!-- CHART SECTION -->
+    <div class="chart-section">
+      <div class="chart-wrapper">
+        <canvas id="stockChart"></canvas>
+      </div>
+    </div>
+
+    <!-- STOCK DETAILS -->
+    <div class="stock-details">
+      <h2>Stock Details</h2>
+      <ul>
+        <li><strong>Symbol:</strong> <span id="stockSymbol">--</span></li>
+        <li><strong>Company Name:</strong> <span id="detailCompany">--</span></li>
+        <li><strong>Price:</strong> <span id="detailPrice">--</span></li>
+        <li><strong>Change:</strong> <span id="detailChange">--</span></li>
+        <li><strong>Volume:</strong> <span id="detailVolume">--</span></li>
+        <li><strong>Market Cap:</strong> <span id="detailMarketCap">--</span></li>
+      </ul>
+
+      <h3>Compare With</h3>
+      <div id="compareCards" class="compare-cards"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="images/investra-logo.png" alt="Logo" class="footer-logo">
+        <span class="footer-brand-text">Investra</span>
+        <p class="footer-tagline">Invest smart. Live better.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Connect with us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Investra. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="detail-script.js"></script>
+  <script>
+    const circle = document.getElementById('userCircle');
+    const dropdown = document.getElementById('userDropdown');
+    const wrapper = document.querySelector('.header-user-wrapper');
+    const email = localStorage.getItem('loggedInEmail');
+    const themeToggleBtn = document.getElementById('themeToggle');
+
+    if (email) {
+      circle.textContent = email[0].toUpperCase();
+      document.getElementById('userEmail').textContent = email;
+    }
+
+    circle.addEventListener('click', () => {
+      wrapper.classList.toggle('active');
+    });
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      if (themeToggleBtn) {
+        themeToggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+      if (themeToggleBtn) themeToggleBtn.textContent = '☀️ Light Mode';
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedInEmail');
+      localStorage.removeItem('theme');
+      window.location.href = 'signin.html';
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) wrapper.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

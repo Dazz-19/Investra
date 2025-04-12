@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In | Investra</title>
+  <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+
+  <div class="signin-container">
+    <!-- Left Illustration Slideshow -->
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="images/ill1.png" alt="Slide 1">
+      </div>
+      <div class="slide fade">
+        <img src="images/ill2.png" alt="Slide 2">
+      </div>
+      <div class="slide fade">
+        <img src="images/investments5.png" alt="Slide 3">
+      </div>
+
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+
+    <!-- Right Form -->
+    <div class="signin-form">
+      <h1>Welcome to <strong>Investra</strong></h1>
+      <p>“Welcome to your personalized stock universe.”</p>
+
+      <form onsubmit="handleLogin(event)">
+        <label for="email">LOG IN</label>
+        <input type="email" id="email" placeholder="Enter Email" required />
+        <input type="password" id="password" placeholder="Enter Password" required />
+        <button type="submit">Get Started</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function handleLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  if (email && password) {
+    localStorage.setItem("loggedInEmail", email);
+    window.location.href = "index.html";
+  } else {
+    alert("Please enter both email and password");
+  }
+}
+
+    // Slideshow Logic
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      const slides = document.getElementsByClassName("slide");
+      const dots = document.getElementsByClassName("dot");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 3000);
+    }
+
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlides();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+/* Layout Container */
+.detail-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+  .chart-section {
+    flex: 2;
+    min-width: 60%;
+    background: #1a0033;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(183, 0, 255, 0.3);
+    overflow-x: auto;  /* 🔥 allows scroll */
+  }
+  
+  #stockChart {
+    min-width: 900px;  /* 🔥 force wide chart */
+    height: 350px;
+  }
+  
+  
+  /* Stock Details Section */
+  .stock-details {
+    flex: 1;
+    min-width: 300px;
+    background: #1a0033;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(183, 0, 255, 0.2);
+    color: #ffffff;
+  }
+  
+  .stock-details h2 {
+    margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #dcaeff;
+    text-shadow: 0 0 6px #c651ff;
+  }
+  
+  .stock-details ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .stock-details li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #eee;
+  }
+  
+  .stock-details strong {
+    color: #caa0ff;
+  }
+  
+  /* Compare Cards */
+  .compare-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .compare-card {
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background: #2b004c;
+    box-shadow: 0 0 8px rgba(183, 0, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .compare-card.green {
+    background-color: #162f16;
+    color: #a5ffaf;
+    box-shadow: 0 0 8px #3cf87760;
+  }
+  
+  .compare-card.red {
+    background-color: #3a1111;
+    color: #ff7d7d;
+    box-shadow: 0 0 8px #ff4e4e60;
+  }
+  
+  .compare-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px #c651ff;
+  }
+  
+  /* 🌙 DARK MODE OVERRIDES */
+  body.dark-theme .chart-section,
+  body.dark-theme .stock-details {
+    background: #100026;
+    box-shadow: 0 0 10px rgba(198, 81, 255, 0.4);
+  }
+  
+  body.dark-theme .stock-details h2 {
+    color: #f1d0ff;
+    text-shadow: 0 0 8px #c651ff;
+  }
+  
+  body.dark-theme .stock-details li {
+    color: #eee;
+  }
+  
+  body.dark-theme .stock-details strong {
+    color: #ffcbff;
+  }
+  
+  body.dark-theme .compare-card {
+    background: #1c0032;
+    color: #eee;
+    box-shadow: 0 0 6px rgba(198, 81, 255, 0.2);
+  }
+  
+  body.dark-theme .compare-card.green {
+    background-color: #103610;
+    color: #aaffaa;
+    box-shadow: 0 0 8px #37ff6e60;
+  }
+  
+  body.dark-theme .compare-card.red {
+    background-color: #400e0e;
+    color: #ff8a8a;
+    box-shadow: 0 0 8px #ff4e4e60;
+  }
+  .chart-wrapper {
+    min-width: 900px;
+    overflow-x: auto;
+  }
+  
+  #stockChart {
+    width: 100%;
+    height: 350px;
+  }
+  
